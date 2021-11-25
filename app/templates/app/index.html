@@ -1,0 +1,201 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+        .form__group {
+          position: relative;
+          padding: 15px 0 0;
+          margin-top: 10px;
+          width: 30%;
+        }
+
+        .form__field {
+          font-family: inherit;
+          width: 100%;
+          border: 0;
+          border-bottom: 2px solid #9b9b9b;
+          outline: 0;
+          font-size: 1.3rem;
+          color: #fff;
+          padding: 7px 0;
+          background: transparent;
+          transition: border-color 0.2s;
+        }
+        .form__field::placeholder {
+          color: transparent;
+        }
+        .form__field:placeholder-shown ~ .form__label {
+          font-size: 1.3rem;
+          cursor: text;
+          top: 20px;
+        }
+
+        .form__label {
+          position: absolute;
+          top: 0;
+          display: block;
+          transition: 0.2s;
+          font-size: 1rem;
+          color: #9b9b9b;
+        }
+
+        .form__field:focus {
+          padding-bottom: 6px;
+          font-weight: 700;
+          border-width: 3px;
+          border-image: linear-gradient(to right, #11998e, #38ef7d);
+          border-image-slice: 1;
+        }
+        .form__field:focus ~ .form__label {
+          position: absolute;
+          top: 0;
+          display: block;
+          transition: 0.2s;
+          font-size: 1rem;
+          color: #11998e;
+          font-weight: 700;
+        }
+
+        /* reset input */
+        .form__field:required, .form__field:invalid {
+          box-shadow: none;
+        }
+        .width25 {
+            width:25%
+        }
+
+        /* demo */
+        body {
+          font-family: 'Merriweather', serif;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          background-color: #222222;
+        }
+        .noselect {
+          -webkit-touch-callout: none;
+            -webkit-user-select: none;
+             -khtml-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+		        -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+	        width: 200px;
+	        height: 50px;
+	        cursor: pointer;
+	        border: none;
+	        display: flex;
+	        align-items: center;
+	        justify-content: center;
+	        background-color: transparent;
+	        background-image: linear-gradient(315deg, #11998e 50%,#9b9b9b 74%);
+	        background-size: 200% 100%;
+	        background-position: left;
+	        background-repeat: no-repeat;
+	        transition: 500ms;
+            margin-top:30px;
+        }
+
+        button:before {
+	        content: 'Check probability';
+	        color: rgba(255,255,255,0.7);
+	        font-size: 16px;
+	        position: absolute;
+	        display: flex;
+	        align-items: center;
+	        justify-content: center;
+	        width: 190px;
+	        height: 40px;
+	        background-color: transparent;
+	        background-image: linear-gradient(315deg, #11998e 0%, #9b9b9b 94%);
+	        transition: 500ms;
+        }
+
+        button:hover {
+	        background-position:right;
+	
+        }
+
+        button:hover:before {
+	        color: rgba(255,255,255,0.8);
+        }
+
+        button:focus {
+	        outline: none;
+        }
+    
+</style>
+<div class="container-fluid" style="margin-top:50px">
+    <h1 style="font-family: 'Merriweather', serif;color:white">Client Details</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form__group field col-md-4">
+            <input type="text" class="form__field" placeholder="Gender" name="Gender" id='Gender' required />
+            <label for="Gender" class="form__label">Gender</label>
+        </div>
+        <div class="form__group field col-md-4">
+            <input type="text" class="form__field" placeholder="Married" name="Married" id='Married' required />
+            <label for="Married" class="form__label">Married</label>
+        </div>
+        <div class="form__group field col-md-4">
+            <input type="text" class="form__field" placeholder="Dependents" name="Dependents" id='Dependents' required />
+            <label for="Dependents" class="form__label">Dependents</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="Education" name="Education" id='Education' required />
+            <label for="Education" class="form__label">Education</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="Self_Employed" name="Self_Employed" id='Self_Employed' required />
+            <label for="Self_Employed" class="form__label">Self Employed</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="ApplicantIncome" name="ApplicantIncome" id='ApplicantIncome' required />
+            <label for="ApplicantIncome" class="form__label">Applicant Income</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="CoapplicantIncome" name="CoapplicantIncome" id='CoapplicantIncome' required />
+            <label for="CoapplicantIncome" class="form__label">Co-applicant Income</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="LoanAmount" name="LoanAmount" id='LoanAmount' required />
+            <label for="LoanAmount" class="form__label">Loan Amount</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="Loan_Amount_Term" name="Loan_Amount_Term" id='Loan_Amount_Term' required />
+            <label for="Loan_Amount_Term" class="form__label">Loan Amount Term</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="Credit_History" name="Credit_History" id='Credit_History' required />
+            <label for="Credit_History" class="form__label">Credit History</label>
+        </div>
+        <div class="form__group field col-md-3">
+            <input type="text" class="form__field" placeholder="Property_Area" name="Property_Area" id='Property_Area' required />
+            <label for="Property_Area" class="form__label">Property Area</label>
+        </div>
+        <div class="col-md-3">
+            <input type="submit" id="noselect" />
+        </div>
+    </form>
+</div>
+<div class="row" id="results" >
+    {% if desicion %}
+    <label style="color:lightgreen">Your loan will be approved. Congrats</label>
+    {% else %}
+    <label style="color:red">Your loan will NOT be approved.</label>
+    {% endif %}
+</div>
+<script>
+    $(document).ready(function () {
+        $('#noselect').click(function () {
+            debugger;
+            $('#results').removeAttr('hidden')
+        });
+    });
+</script>
+{% endblock %}
