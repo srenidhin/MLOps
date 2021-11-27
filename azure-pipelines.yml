@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands:
-   - agent.name -equals LAPTOP-2A1SL8A9
+   - agent.name -equals DESKTOP-94HDDEE
 
 steps:
 - script: echo Hello, world!
