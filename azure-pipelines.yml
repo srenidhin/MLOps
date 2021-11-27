@@ -13,10 +13,4 @@ pool:
 
 steps:
 - script: echo Hello, world!
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
-    architecture: 'x64'
-  displayName: 'Run a one-line script'
 
