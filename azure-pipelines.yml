@@ -14,14 +14,11 @@ pool:
 
 steps:
 - script: echo Hello, world!
-- task: VSBuild@1
+- task: MSBuild@1
   inputs:
     solution: 'DjangoWebProject1.sln'
-    vsVersion: '17.0'
-    platform: 'x64'
-    configuration: 'Release'
     msbuildArchitecture: 'x64'
 - task: IISWebAppDeploymentOnMachineGroup@0
   inputs:
     WebSiteName: 'loanpredictonline'
-    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
+    Package: '$(System.DefaultWorkingDirectory)\DjangoWebProject1.zip'
