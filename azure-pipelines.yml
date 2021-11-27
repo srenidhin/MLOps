@@ -1,0 +1,24 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: Default
+  demands:
+   - agent.name -equals DESKTOP-94HDDEE
+
+steps:
+- script: echo Hello, world!
+- task: MSBuild@1
+  inputs:
+    solution: 'DjangoWebProject1.sln'
+    msbuildArchitecture: 'x64'
+- task: IISWebAppDeploymentOnMachineGroup@0
+  inputs:
+    WebSiteName: 'loanpredictonline'
+    Package: '$(System.DefaultWorkingDirectory)\DjangoWebProject1.zip'
