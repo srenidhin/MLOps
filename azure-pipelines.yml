@@ -16,7 +16,7 @@ steps:
 - script: echo Hello, world!
 - task: VSBuild@1
   inputs:
-    solution: '**\*.sln'
+    solution: 'DjangoWebProject1.sln'
     vsVersion: '17.0'
     platform: 'x64'
     configuration: 'Release'
