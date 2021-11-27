@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -13,4 +14,14 @@ pool:
 
 steps:
 - script: echo Hello, world!
-
+- task: VSBuild@1
+  inputs:
+    solution: '**\*.sln'
+    vsVersion: '17.0'
+    platform: 'x64'
+    configuration: 'Release'
+    msbuildArchitecture: 'x64'
+- task: IISWebAppDeploymentOnMachineGroup@0
+  inputs:
+    WebSiteName: 'loanpredictonline'
+    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
